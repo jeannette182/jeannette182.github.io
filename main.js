@@ -12,9 +12,10 @@
 
   /* ---------- Rotating portraits with a short cross dissolve ---------- */
   var slides = [
-    { src: 'assets/cut-4.webp', caption: 'Mathematical scientist', alt: 'Jeannette Mukangango smiling, in an olive jacket.' },
-    { src: 'assets/cut-5.webp', caption: 'Climate and data researcher', alt: 'Jeannette Mukangango in glasses and a black dress.' },
-    { src: 'assets/cut-3.webp', caption: 'App Development with Swift, Apple Authorised Training, 2025', alt: 'Jeannette Mukangango in a pink striped shirt, smiling.' }
+    { src: 'assets/hero-1.webp', caption: 'Research Fellow, AIMS Research and Innovation Centre', alt: 'Jeannette Mukangango in a blue blazer with her arms crossed, smiling.' },
+    { src: 'assets/hero-2.webp', caption: 'Speaking at the IKIRERE Physics Camp, 2026', alt: 'Jeannette Mukangango in a floral shirt, speaking into a microphone.' },
+    { src: 'assets/hero-3.webp', caption: 'Climate and data researcher', alt: 'Jeannette Mukangango in glasses and a black dress, smiling.' },
+    { src: 'assets/cut-4.webp', caption: 'Mathematical scientist', alt: 'Jeannette Mukangango smiling, in an olive jacket.' }
   ];
   var HOLD = 5200;
   var FADE = 900;
