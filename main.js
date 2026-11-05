@@ -10,19 +10,18 @@
   root.classList.toggle('still', paused);
   var finePointer = window.matchMedia('(pointer: fine)').matches;
 
-  /* ---------- Rotating portraits with a storm-front transition ---------- */
+  /* ---------- Rotating portraits with a short cross dissolve ---------- */
   var slides = [
     { src: 'assets/cut-4.webp', caption: 'Mathematical scientist', alt: 'Jeannette Mukangango smiling, in an olive jacket.' },
     { src: 'assets/cut-5.webp', caption: 'Climate and data researcher', alt: 'Jeannette Mukangango in glasses and a black dress.' },
     { src: 'assets/cut-3.webp', caption: 'App Development with Swift, Apple Authorised Training, 2025', alt: 'Jeannette Mukangango in a pink striped shirt, smiling.' }
   ];
   var HOLD = 5200;
-  var FADE = 3200;
+  var FADE = 900;
 
   var canvas = document.getElementById('stage-canvas');
   var fallback = document.getElementById('stage-fallback');
   var captionEl = document.getElementById('stage-caption');
-  var shock = document.getElementById('shock');
   var dotsEl = document.getElementById('stage-dots');
   var current = 0;
   var timer = null;
@@ -54,11 +53,7 @@
     'precision highp float;',
     'varying vec2 v;',
     'uniform sampler2D A;uniform sampler2D B;',
-    'uniform float prog;uniform float zA;uniform float zB;uniform float seed;uniform float time;uniform vec2 res;',
-    'float h(vec2 q){return fract(sin(dot(q,vec2(127.1,311.7)))*43758.5453);}',
-    'float n(vec2 q){vec2 i=floor(q),f=fract(q);f=f*f*(3.-2.*f);',
-    'return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}',
-    'float fld(vec2 u,float s){return (1.-u.x)*.58+u.y*.1+(n(u*5.+s)*.65+n(u*13.+s)*.35)*.42;}',
+    'uniform float prog;uniform float zA;uniform float zB;',
     'vec2 z(vec2 u,float k){return (u-vec2(.5,.42))/k+vec2(.5,.42);}',
     /* Portrait with a gold and blue rim light */
     'vec4 fig(sampler2D T,vec2 u){',
@@ -73,53 +68,16 @@
     '  return c;',
     '}',
     'void main(){',
-    '  vec2 u=v;',
-    '  vec2 ua=z(u,zA);vec2 ub=z(u,zB);',
+    '  vec2 ua=z(v,zA);',
     '  if(prog<=0.){gl_FragColor=fig(A,ua);return;}',
-    '  float s1=seed;float s2=seed+7.3;',
-    /* The old figure blows away, starting from the right */
-    '  float t1=prog*1.62-.12;',
-    '  float k1=smoothstep(t1-.035,t1+.035,fld(ua,s1));',
-    '  vec4 a=fig(A,ua)*k1;',
-    '  float hot=4.*k1*(1.-k1)*texture2D(A,ua).a;',
-    /* The new figure gathers a little later, starting from the left */
-    '  float t2=(prog-.3)/.7*1.62-.12;',
-    '  float k2=(prog<.3)?0.:1.-smoothstep(t2-.035,t2+.035,fld(vec2(1.-ub.x,ub.y),s2));',
-    '  vec4 b=fig(B,ub)*k2;',
-    '  float hot2=4.*k2*(1.-k2)*texture2D(B,ub).a;',
-    /* Grains streaming on the wind */
-    '  vec3 dust=vec3(0.);float da=0.;',
-    '  vec2 cell=floor(u*res/2.5);',
-    '  for(int i=1;i<=11;i++){',
-    '    float fi=float(i);',
-    '    float d=fi*.021;',
-    '    float g=h(cell+fi*7.13+floor(time*9.));',
-    '    vec2 sh=vec2(d*(1.+g*.9),-d*.26+sin(u.x*9.+time*2.+fi)*.012);',
-    '    float w=(1.-fi/12.)*(1.-fi/12.);',
-    '    float pick=step(.9,g);',
-    '    vec2 qa=ua+sh;',
-    '    vec4 ta=texture2D(A,qa);',
-    '    float ax=ta.a*(1.-smoothstep(t1-.035,t1+.035,fld(qa,s1)));',
-    '    dust+=mix(ta.rgb,vec3(1.,.82,.5),.72)*ax*pick*w;',
-    '    da+=ax*pick*w;',
-    '    vec2 qb=ub-sh;',
-    '    vec4 tb=texture2D(B,qb);',
-    '    float bx=tb.a*smoothstep(t2-.035,t2+.035,fld(vec2(1.-qb.x,qb.y),s2))*step(.3,prog);',
-    '    dust+=mix(tb.rgb,vec3(.62,.82,1.),.6)*bx*pick*w*.8;',
-    '    da+=bx*pick*w*.8;',
-    '  }',
-    '  float env=smoothstep(0.,.08,prog)*(1.-smoothstep(.9,1.,prog))*smoothstep(0.,.16,u.x)*smoothstep(1.,.86,u.x)*smoothstep(0.,.14,u.y)*smoothstep(1.,.9,u.y);',
-    '  dust*=env;da*=env;',
-    '  vec4 o=a+b*(1.-a.a);',
-    '  o.rgb+=vec3(1.,.74,.38)*(hot+hot2)*.9;',
-    '  o.a=min(1.,o.a+(hot+hot2)*.5);',
-    '  o.rgb+=dust*.85;o.a=min(1.,o.a+da*.6);',
-    '  gl_FragColor=vec4(min(o.rgb,vec3(o.a)),o.a);',
+    /* Clean cross dissolve: the new portrait settles in from slightly larger */
+    '  vec2 ub=z(v,zB*(1.+(1.-prog)*.035));',
+    '  gl_FragColor=mix(fig(A,ua),fig(B,ub),prog);',
     '}'
   ].join('\n');
 
   var gl = null, prog = null, loc = {}, textures = [], images = [];
-  var fromI = 0, toI = 0, startT = 0, transitioning = false, slideStart = 0, prevStart = 0, seed = 1;
+  var fromI = 0, toI = 0, startT = 0, transitioning = false, slideStart = 0, prevStart = 0;
 
   function compile(type, src) {
     var s = gl.createShader(type);
@@ -148,7 +106,7 @@
     var p = gl.getAttribLocation(prog, 'p');
     gl.enableVertexAttribArray(p);
     gl.vertexAttribPointer(p, 2, gl.FLOAT, false, 0, 0);
-    ['A', 'B', 'prog', 'zA', 'zB', 'seed', 'time', 'res'].forEach(function (k) { loc[k] = gl.getUniformLocation(prog, k); });
+    ['A', 'B', 'prog', 'zA', 'zB'].forEach(function (k) { loc[k] = gl.getUniformLocation(prog, k); });
     gl.uniform1i(loc.A, 0);
     gl.uniform1i(loc.B, 1);
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
@@ -207,9 +165,6 @@
     gl.uniform1f(loc.prog, ease(p));
     gl.uniform1f(loc.zA, paused ? 1 : zoomFor(prevStart, now));
     gl.uniform1f(loc.zB, paused ? 1 : zoomFor(slideStart, now));
-    gl.uniform1f(loc.seed, seed);
-    gl.uniform1f(loc.time, now / 1000);
-    gl.uniform2f(loc.res, canvas.width, canvas.height);
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
   }
@@ -221,11 +176,7 @@
     setCaption(i);
     if (gl) {
       toI = i;
-      seed = Math.random() * 40;
       startT = performance.now();
-      shock.classList.remove('go');
-      void shock.offsetWidth;
-      shock.classList.add('go');
       slideStart = startT;
       transitioning = true;
     } else {
