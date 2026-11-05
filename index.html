@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jeannette Mukangango | Climate finance and climate data research</title>
-  <meta name="description" content="Jeannette Mukangango is a mathematical scientist and Research Fellow at the AIMS Research and Innovation Centre in Kigali, Rwanda, working on climate research, climate finance and data science.">
+  <title>Jeannette Mukangango | AI for climate, weather prediction and climate finance</title>
+  <meta name="description" content="Jeannette Mukangango is a mathematical scientist and Research Fellow at the AIMS Research and Innovation Centre in Kigali, Rwanda, working on AI for climate, weather prediction, climate finance and climate resilience in Africa.">
   <meta name="author" content="Jeannette Mukangango">
-  <meta name="theme-color" content="#23222e">
+  <meta name="theme-color" content="#070b16">
   <link rel="canonical" href="https://jeannette182.github.io/">
 
   <meta property="og:type" content="profile">
   <meta property="og:title" content="Jeannette Mukangango">
-  <meta property="og:description" content="Mathematical scientist working on climate research, climate finance and data science at AIMS RIC, Kigali.">
+  <meta property="og:description" content="AI for climate, weather prediction, climate finance and climate resilience in Africa.">
   <meta property="og:url" content="https://jeannette182.github.io/">
   <meta property="og:image" content="https://jeannette182.github.io/assets/share.jpg">
   <meta name="twitter:card" content="summary_large_image">
@@ -19,8 +19,10 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/cut-4.webp" type="image/webp">
   <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add('js');</script>
 
   <script type="application/ld+json">
   {
@@ -28,10 +30,11 @@
     "@type": "Person",
     "name": "Jeannette Mukangango",
     "url": "https://jeannette182.github.io/",
-    "image": "https://jeannette182.github.io/assets/jeannette-mukangango.jpg",
+    "image": "https://jeannette182.github.io/assets/slide-1.jpg",
     "jobTitle": "Research Fellow",
     "worksFor": { "@type": "Organization", "name": "AIMS Research and Innovation Centre" },
     "address": { "@type": "PostalAddress", "addressLocality": "Kigali", "addressCountry": "RW" },
+    "knowsAbout": ["AI for climate", "Weather prediction", "Climate finance", "Climate resilience in Africa"],
     "sameAs": [
       "https://www.linkedin.com/in/jeannette-mukangango-3515991b9",
       "https://github.com/jeannette182"
@@ -41,10 +44,14 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
+  <div class="progress" aria-hidden="true"><span></span></div>
+  <div class="sky" aria-hidden="true"></div>
+  <canvas id="wind" aria-hidden="true"></canvas>
 
   <header class="site-header">
-    <a class="brand" href="#top">Jeannette Mukangango</a>
+    <a class="brand" href="#top">J<span>M</span></a>
     <nav aria-label="Main">
+      <a href="#focus">Focus</a>
       <a href="#research">Research</a>
       <a href="#experience">Experience</a>
       <a href="#publications">Publications</a>
@@ -53,220 +60,321 @@
   </header>
 
   <section class="hero" id="top">
-    <div class="hero-text">
-      <p class="eyebrow">Research Fellow, AIMS Research and Innovation Centre</p>
-      <h1>Jeannette Mukangango</h1>
-      <p class="lead">I am a mathematical scientist working on climate research, climate finance and data science in Kigali, Rwanda.</p>
-      <p class="hero-actions">
-        <a class="button" href="#research">See my research</a>
-        <a class="button button-quiet" href="#contact">Get in touch</a>
-      </p>
+    <div class="hero-bg" data-parallax="0.18" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <p class="eyebrow load-in" style="--d:.15s">Research Fellow, AIMS Research and Innovation Centre</p>
+        <h1>
+          <span class="name-script">Jeannette</span>
+          <span class="name-caps">Mukangango</span>
+        </h1>
+        <p class="lead load-in" style="--d:1.25s">AI for climate, weather prediction, climate finance and climate resilience in Africa.</p>
+        <p class="hero-actions load-in" style="--d:1.5s">
+          <a class="button" href="#research"><span>Explore my research</span></a>
+          <a class="button button-quiet" href="#contact"><span>Get in touch</span></a>
+        </p>
+        <p class="stage-meta load-in" style="--d:1.7s">
+          <span class="stage-dots" id="stage-dots"></span>
+          <span id="stage-caption">Mathematical scientist</span>
+        </p>
+      </div>
+
+      <div class="scene load-in" id="scene" style="--d:.4s">
+        <div class="halo" aria-hidden="true"></div>
+        <div class="shock" id="shock" aria-hidden="true"></div>
+        <svg class="orbits" id="orbits" viewBox="0 0 1000 1000" aria-hidden="true">
+          <g transform="translate(500 470) rotate(-17)">
+            <g class="orbit">
+              <ellipse rx="478" ry="128"/>
+              <circle r="7"><animateMotion dur="19s" repeatCount="indefinite" path="M-478 0a478 128 0 1 0 956 0a478 128 0 1 0 -956 0"/></circle>
+            </g>
+          </g>
+          <g transform="translate(500 520) rotate(13)">
+            <g class="orbit orbit-2">
+              <ellipse rx="416" ry="92"/>
+              <circle r="5"><animateMotion dur="13s" repeatCount="indefinite" path="M416 0a416 92 0 1 0 -832 0a416 92 0 1 0 832 0"/></circle>
+            </g>
+          </g>
+        </svg>
+        <img id="stage-fallback" src="assets/cut-4.webp" width="1200" height="1500" fetchpriority="high"
+             alt="Jeannette Mukangango smiling, in an olive jacket.">
+        <canvas id="stage-canvas" role="img" aria-label="Rotating portraits of Jeannette Mukangango"></canvas>
+      </div>
     </div>
-    <div class="hero-photo">
-      <img src="assets/jeannette-mukangango.jpg" width="1000" height="1428"
-           alt="Portrait of Jeannette Mukangango in a blue blazer with her arms crossed, smiling, with a large image of the Earth behind her.">
-    </div>
+    <a class="scroll-cue" href="#focus" aria-label="Scroll to content"><span></span></a>
   </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>AI for climate</span><span>Weather prediction</span><span>Climate finance</span><span>Climate resilience in Africa</span>
+      <span>AI for climate</span><span>Weather prediction</span><span>Climate finance</span><span>Climate resilience in Africa</span>
+      <span>AI for climate</span><span>Weather prediction</span><span>Climate finance</span><span>Climate resilience in Africa</span>
+      <span>AI for climate</span><span>Weather prediction</span><span>Climate finance</span><span>Climate resilience in Africa</span>
+    </div>
+  </div>
 
   <main id="main">
 
-    <section class="row" id="about" aria-labelledby="about-h">
-      <h2 id="about-h">About</h2>
-      <div class="prose">
-        <p>My current research looks at how Africa's net-zero transition is financed, and at what decides whether capital actually reaches climate investment. I came to this from statistics and mathematics: my Master's at AIMS Rwanda focused on predicting rainy-season onset with machine learning, and I have worked on tax policy modelling with UNU-WIDER, on risk analytics at the Rwanda Revenue Authority, and on official statistics at the National Institute of Statistics of Rwanda.</p>
-        <p>I am interested in AI for climate, weather prediction, climate finance and climate resilience in Africa, and I am open to research collaborations.</p>
+    <section class="block" id="about" aria-labelledby="about-h">
+      <div class="intro reveal">
+        <p class="kicker">About</p>
+        <h2 id="about-h">From rainfall to <em>climate capital</em></h2>
       </div>
-      <figure class="wide-photo">
-        <img src="assets/jeannette-speaking.jpg" width="994" height="398" loading="lazy"
-             alt="Jeannette Mukangango in a blue blazer, speaking into a microphone at an event.">
-        <figcaption>Speaking at a science and policy event.</figcaption>
-      </figure>
+      <div class="prose reveal">
+        <p>My current research looks at how Africa's net-zero transition is financed, and at what decides whether capital actually reaches climate investment. I came to this from statistics and mathematics: my Master's at AIMS Rwanda focused on predicting rainy-season onset with machine learning, and I have worked on tax policy modelling with UNU-WIDER, on risk analytics at the Rwanda Revenue Authority, and on official statistics at the National Institute of Statistics of Rwanda.</p>
+        <p>I am open to research collaborations across AI for climate, weather prediction, climate finance and climate resilience in Africa.</p>
+      </div>
     </section>
 
-    <section class="row" id="research" aria-labelledby="research-h">
-      <h2 id="research-h">Research</h2>
-      <div class="stack">
+    <section class="block" id="focus" aria-labelledby="focus-h">
+      <div class="intro reveal">
+        <p class="kicker">Focus</p>
+        <h2 id="focus-h">Four areas, <em>one continent</em></h2>
+      </div>
+      <div class="pillars">
+        <article class="pillar reveal tilt">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="10" cy="12" r="3"/><circle cx="10" cy="36" r="3"/><circle cx="24" cy="24" r="3"/><circle cx="38" cy="12" r="3"/><circle cx="38" cy="36" r="3"/><path d="M13 12l8 10M13 36l8-10M27 22l8-9M27 26l8 9"/></svg>
+          <h3>AI for climate</h3>
+          <p>Machine learning on climate data in Python, comparing Gradient Boosting, Random Forest and Multilayer Perceptron models.</p>
+        </article>
+        <article class="pillar reveal tilt" style="--d:.08s">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 30a8 8 0 0 1 1-16 11 11 0 0 1 21 3 7 7 0 0 1-1 13"/><path d="M18 34l-2 6M26 34l-2 6M34 34l-2 6"/></svg>
+          <h3>Weather prediction</h3>
+          <p>Predicting the onset of the March to May rainy season in Rwanda from CHIRPS rainfall and NASA climate data.</p>
+        </article>
+        <article class="pillar reveal tilt" style="--d:.16s">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 40h36"/><path d="M12 40V27M24 40V19M36 40V11"/><path d="M8 20l12-9 9 5 12-10"/></svg>
+          <h3>Climate finance</h3>
+          <p>How financial barriers, institutions and instruments such as green bonds and carbon markets shape the flow of capital to climate investment.</p>
+        </article>
+        <article class="pillar reveal tilt" style="--d:.24s">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5l15 6v12c0 10-6.5 16-15 20-8.5-4-15-10-15-20V11z"/><path d="M24 34V20"/><path d="M24 26c0-5 3-8 8-8 0 5-3 8-8 8zM24 30c0-4-2.5-6.5-7-6.5 0 4 2.5 6.5 7 6.5z"/></svg>
+          <h3>Climate resilience</h3>
+          <p>Trained in Mathematical Science for Climate Resilience, and supporting climate-science capacity building through the IKIRERE project.</p>
+        </article>
+      </div>
+    </section>
+  </main>
 
-        <article class="project">
-          <p class="meta">Current &middot; Research Fellowship, AIMS RIC</p>
+  <section class="band" aria-label="Storms over Africa">
+    <div class="band-img band-storm" data-parallax="0.12" aria-hidden="true"></div>
+    <div class="band-inner reveal">
+      <p class="band-line">Turning climate data into <em>decisions</em></p>
+      <p class="credit">Thunderstorms over Africa, seen from the International Space Station. Image: NASA</p>
+    </div>
+  </section>
+
+  <main class="main-2">
+
+    <section class="block" id="research" aria-labelledby="research-h">
+      <div class="intro reveal">
+        <p class="kicker">Research</p>
+        <h2 id="research-h">Selected <em>work</em></h2>
+      </div>
+      <div class="projects">
+
+        <article class="project project-lead reveal tilt">
+          <p class="meta">Current, Research Fellowship at AIMS RIC</p>
           <h3>Financing Africa's Net-Zero Transition: An Integrated Systems Framework of Climate Finance, Green Bonds, and Carbon Markets</h3>
           <p>A PRISMA 2020-guided systematic literature review of how financial barriers, institutional conditions and financing mechanisms affect whether capital reaches climate-investment opportunities in Africa.</p>
           <p>The work combines Soft Systems Methodology and Financial Integration Theory to separate financial availability from effective connectivity. It organises the evidence in an ontology-based knowledge graph that links financing constraints, institutions, financial mechanisms, investment processes and climate outcomes.</p>
-          <p class="tags">Guarantees &middot; Blended finance &middot; Green bonds &middot; Adaptation finance &middot; Article 6 carbon markets</p>
+          <ul class="tags">
+            <li>Guarantees</li><li>Blended finance</li><li>Green bonds</li><li>Adaptation finance</li><li>Article 6 carbon markets</li>
+          </ul>
         </article>
 
-        <article class="project">
-          <p class="meta">2022&ndash;2024 &middot; UNU-WIDER</p>
+        <article class="project reveal tilt">
+          <p class="meta">2022 to 2024, UNU-WIDER</p>
           <h3>A tax-benefit microsimulation model for Rwanda</h3>
           <p>Co-developed Rwanda's tax-benefit microsimulation model with the UNU-WIDER research team, covering the documentation of tax and benefit legislation, preparation of survey-based input data, the feasibility study and implementation in EUROMOD. The model assesses the distributional and socio-economic impacts of policy reforms.</p>
-          <p><a href="#publications">Read the working paper on the 2023&ndash;2024 income tax reform</a></p>
+          <p><a class="link" href="#publications">Read the working paper</a></p>
         </article>
 
-        <article class="project">
-          <p class="meta">2021 &middot; Master's thesis, AIMS Rwanda</p>
+        <article class="project reveal tilt" style="--d:.1s">
+          <p class="meta">2021, Master's thesis at AIMS Rwanda</p>
           <h3>Predicting the Onset of the MAM Rainy Season in Musanze District, Rwanda Using Machine Learning</h3>
-          <p>I used Python to analyse CHIRPS rainfall and NASA climate datasets, comparing Gradient Boosting, Random Forest and Multilayer Perceptron models for predicting the start of the March&ndash;May rains.</p>
+          <p>I used Python to analyse CHIRPS rainfall and NASA climate datasets, comparing Gradient Boosting, Random Forest and Multilayer Perceptron models for predicting the start of the March to May rains.</p>
         </article>
 
       </div>
     </section>
 
-    <section class="row" id="experience" aria-labelledby="experience-h">
-      <h2 id="experience-h">Experience</h2>
-      <ol class="timeline">
-        <li>
-          <span class="when">Jan 2025 &ndash; Present</span>
-          <div>
-            <h3>Research Fellow</h3>
-            <p class="org">AIMS Research and Innovation Centre, Kigali</p>
-            <p>Research on climate finance and Africa's net-zero transition.</p>
-          </div>
+    <section class="block" id="experience" aria-labelledby="experience-h">
+      <div class="intro reveal">
+        <p class="kicker">Experience</p>
+        <h2 id="experience-h">The <em>journey</em> so far</h2>
+      </div>
+      <ol class="timeline" id="timeline">
+        <li class="reveal">
+          <span class="when">Jan 2025 to Present</span>
+          <h3>Research Fellow</h3>
+          <p class="org">AIMS Research and Innovation Centre, Kigali</p>
+          <p>Research on climate finance and Africa's net-zero transition.</p>
         </li>
-        <li>
-          <span class="when">May 2022 &ndash; Dec 2024</span>
-          <div>
-            <h3>Research Consultant</h3>
-            <p class="org">UNU-WIDER (United Nations University)</p>
-            <p>Co-developed Rwanda's tax-benefit microsimulation model in EUROMOD with the UNU-WIDER research team, from feasibility study to implementation, and co-authored the working paper on the 2023&ndash;2024 personal income tax reform.</p>
-          </div>
+        <li class="reveal">
+          <span class="when">May 2022 to Dec 2024</span>
+          <h3>Research Consultant</h3>
+          <p class="org">UNU-WIDER (United Nations University)</p>
+          <p>Co-developed Rwanda's tax-benefit microsimulation model in EUROMOD with the UNU-WIDER research team, from feasibility study to implementation, and co-authored the working paper on the 2023-2024 personal income tax reform.</p>
         </li>
-        <li>
-          <span class="when">Apr &ndash; Dec 2022</span>
-          <div>
-            <h3>MS4CR Intern</h3>
-            <p class="org">Rwanda Environment Management Authority (REMA) and AIMS</p>
-            <p>Collected and analysed physico-chemical water parameters related to methane gas extraction in Lake Kivu.</p>
-          </div>
+        <li class="reveal">
+          <span class="when">Apr to Dec 2022</span>
+          <h3>MS4CR Intern</h3>
+          <p class="org">Rwanda Environment Management Authority (REMA) and AIMS</p>
+          <p>Collected and analysed physico-chemical water parameters related to methane gas extraction in Lake Kivu.</p>
         </li>
-        <li>
-          <span class="when">Oct 2021 &ndash; Jan 2022</span>
-          <div>
-            <h3>Data Science Intern</h3>
-            <p class="org">Rwanda Revenue Authority</p>
-            <p>Co-developed automated decision rules for VAT refund claim assessment and a predictive model of future taxpayer non-compliance.</p>
-          </div>
+        <li class="reveal">
+          <span class="when">Oct 2021 to Jan 2022</span>
+          <h3>Data Science Intern</h3>
+          <p class="org">Rwanda Revenue Authority</p>
+          <p>Co-developed automated decision rules for VAT refund claim assessment and a predictive model of future taxpayer non-compliance.</p>
         </li>
-        <li>
-          <span class="when">Sep 2019 &ndash; Oct 2020</span>
-          <div>
-            <h3>Support Staff</h3>
-            <p class="org">National Institute of Statistics of Rwanda</p>
-            <p>Worked on the Statistical Yearbook 2019 and contributed to the evaluation of performance contracts (Imihigo 2019/2020).</p>
-          </div>
+        <li class="reveal">
+          <span class="when">Sep 2019 to Oct 2020</span>
+          <h3>Support Staff</h3>
+          <p class="org">National Institute of Statistics of Rwanda</p>
+          <p>Worked on the Statistical Yearbook 2019 and contributed to the evaluation of performance contracts (Imihigo 2019/2020).</p>
         </li>
-        <li>
-          <span class="when">Sep 2018 &ndash; Aug 2019</span>
-          <div>
-            <h3>Intern</h3>
-            <p class="org">National Institute of Statistics of Rwanda</p>
-            <p>Supported the communication and dissemination of statistical data and microdata for public policy, monitoring and evaluation.</p>
-          </div>
+        <li class="reveal">
+          <span class="when">Sep 2018 to Aug 2019</span>
+          <h3>Intern</h3>
+          <p class="org">National Institute of Statistics of Rwanda</p>
+          <p>Supported the communication and dissemination of statistical data and microdata for public policy, monitoring and evaluation.</p>
         </li>
       </ol>
     </section>
 
-    <section class="row" id="education" aria-labelledby="education-h">
-      <h2 id="education-h">Education</h2>
-      <ol class="timeline">
-        <li>
-          <span class="when">2021</span>
-          <div>
-            <h3>Master of Science in Mathematical Sciences</h3>
-            <p class="org">AIMS Rwanda</p>
-            <p>Major: Mathematical Science for Climate Resilience.</p>
-          </div>
-        </li>
-        <li>
-          <span class="when">2018</span>
-          <div>
-            <h3>Bachelor of Science with Honours in Statistics Applied to Economy</h3>
-            <p class="org">INES-Ruhengeri</p>
-          </div>
-        </li>
-      </ol>
+    <section class="block" id="education" aria-labelledby="education-h">
+      <div class="intro reveal">
+        <p class="kicker">Education</p>
+        <h2 id="education-h">Academic <em>foundations</em></h2>
+      </div>
+      <div class="degrees">
+        <article class="degree reveal tilt">
+          <p class="meta">2021, AIMS Rwanda</p>
+          <h3>Master of Science in Mathematical Sciences</h3>
+          <p>Major: Mathematical Science for Climate Resilience.</p>
+        </article>
+        <article class="degree reveal tilt" style="--d:.1s">
+          <p class="meta">2018, INES-Ruhengeri</p>
+          <h3>Bachelor of Science with Honours in Statistics Applied to Economy</h3>
+        </article>
+      </div>
     </section>
 
-    <section class="row" id="publications" aria-labelledby="publications-h">
-      <h2 id="publications-h">Publications and talks</h2>
+    <section class="block" id="publications" aria-labelledby="publications-h">
+      <div class="intro reveal">
+        <p class="kicker">Publications</p>
+        <h2 id="publications-h">Papers and <em>talks</em></h2>
+      </div>
       <ul class="plain">
-        <li>
+        <li class="reveal">
           de Mahieu, A., Lastunen, J., <strong>Mukangango, J.</strong>, and Harerimana, T. (2023).
-          <a href="https://wider.unu.edu/publication/evaluating-impact-2023-2024-personal-income-tax-reform-rwanda">Evaluating the impact of the 2023&ndash;2024 personal income tax reform in Rwanda: An analysis using tax-benefit microsimulation modelling</a>.
+          <a class="link" href="https://wider.unu.edu/publication/evaluating-impact-2023-2024-personal-income-tax-reform-rwanda">Evaluating the impact of the 2023-2024 personal income tax reform in Rwanda: An analysis using tax-benefit microsimulation modelling</a>.
           WIDER Working Paper 2023/73. UNU-WIDER.
         </li>
-        <li>
-          <strong>Oral presentation:</strong> Financing Africa's Net-Zero Transition: A Systematic Review and Integrated Framework of Climate Finance, Green Bonds, and Carbon Markets. Second Rwanda Climate Science Symposium (RCSS 2026), Kigali, 22&ndash;23 September 2026.
+        <li class="reveal">
+          <strong>Oral presentation:</strong> Financing Africa's Net-Zero Transition: A Systematic Review and Integrated Framework of Climate Finance, Green Bonds, and Carbon Markets. Second Rwanda Climate Science Symposium (RCSS 2026), Kigali, 22 to 23 September 2026.
         </li>
-        <li>
+        <li class="reveal">
           Contributor, <em>Statistical Yearbook 2019</em>. National Institute of Statistics of Rwanda.
         </li>
       </ul>
     </section>
 
-    <section class="row" id="community" aria-labelledby="community-h">
-      <h2 id="community-h">Community and outreach</h2>
-      <ul class="plain">
-        <li>
-          <strong>Capacity Building Assistant (Volunteer), IKIRERE Project, AIMS RIC</strong>, March 2025 &ndash; Present. I support climate-science and STEM capacity building, and contributed to organising the IKIRERE Early Career Researchers Academy 2026.
-        </li>
-        <li>
-          <strong>Organiser and Coordinator, AIMS Alumni-Led Africa Science Week</strong>, Rwanda, 2026.
-        </li>
-        <li>
-          <strong>Physics Camp Facilitator and Mentor</strong>, 2026. I facilitated hands-on activities and mentored secondary school students, including girls, in STEM.
-        </li>
-        <li>
-          <strong>Member, Rwandan Association of Women in Science and Engineering (RAWISE)</strong>, since 2024.
-        </li>
-        <li>
-          <strong>Winner, Infographic Competition</strong>, National Institute of Statistics of Rwanda, November 2017.
-        </li>
-      </ul>
-      <figure class="wide-photo wide-photo-center">
-        <img src="assets/jeannette-ikirere.jpg" width="1200" height="629" loading="lazy"
-             alt="Jeannette Mukangango in a floral shirt, speaking into a microphone in front of an IKIRERE project backdrop.">
-        <figcaption>Speaking at the IKIRERE Physics Camp, 2026.</figcaption>
-      </figure>
-    </section>
-
-    <section class="row" id="skills" aria-labelledby="skills-h">
-      <h2 id="skills-h">Skills and training</h2>
-      <div class="stack-tight">
-        <dl class="facts">
-          <div><dt>Programming</dt><dd>Python (pandas, NumPy, scikit-learn, Matplotlib, TensorFlow/Keras), R, Stata, SPSS, EUROMOD, Power BI, LaTeX</dd></div>
-          <div><dt>Methods</dt><dd>Statistical modelling, machine learning, forecasting, microsimulation, Monte Carlo simulation, difference-in-differences, systematic review and evidence synthesis</dd></div>
-          <div><dt>Languages</dt><dd>Kinyarwanda (native), English (fluent), French (basic)</dd></div>
-        </dl>
-        <h3 class="minor">Selected training</h3>
-        <ul class="compact">
-          <li>AIMS RIC Doctoral Training School on Foundational Methods in Data Science, 2026</li>
-          <li>App Development with Swift, Apple Authorised Training, 2025</li>
-          <li>Climate Finance and Innovative Business Models Program, African Group of Negotiators Experts Support (AGNES), 2025</li>
-          <li>Modern Statistics and Machine Learning for Global Health, Imperial College London and AIMS RIC, 2024</li>
-          <li>Certificate in Business Management, ESMT Berlin with AIMS, 2021</li>
-          <li>Biodiversity Informatics, Biodiversity Summer School, AIMS Next Einstein Initiative and IDRC, 2021</li>
-          <li>Leadership and Communication, NISR and UK Office for National Statistics, 2019</li>
+    <section class="block" id="community" aria-labelledby="community-h">
+      <div class="intro reveal">
+        <p class="kicker">Community</p>
+        <h2 id="community-h">Science <em>in the open</em></h2>
+      </div>
+      <div class="community">
+        <ul class="plain">
+          <li class="reveal">
+            <strong>Capacity Building Assistant (Volunteer), IKIRERE Project, AIMS RIC</strong>, March 2025 to Present. I support climate-science and STEM capacity building, and contributed to organising the IKIRERE Early Career Researchers Academy 2026.
+          </li>
+          <li class="reveal">
+            <strong>Organiser and Coordinator, AIMS Alumni-Led Africa Science Week</strong>, Rwanda, 2026.
+          </li>
+          <li class="reveal">
+            <strong>Physics Camp Facilitator and Mentor</strong>, 2026. I facilitated hands-on activities and mentored secondary school students, including girls, in STEM.
+          </li>
+          <li class="reveal">
+            <strong>Member, Rwandan Association of Women in Science and Engineering (RAWISE)</strong>, since 2024.
+          </li>
+          <li class="reveal">
+            <strong>Winner, Infographic Competition</strong>, National Institute of Statistics of Rwanda, November 2017.
+          </li>
         </ul>
+        <div class="gallery">
+          <figure class="reveal">
+            <div><img src="assets/jeannette-ikirere.jpg" width="1200" height="629" loading="lazy" alt="Jeannette Mukangango in a floral shirt, speaking into a microphone in front of an IKIRERE project backdrop."></div>
+            <figcaption>Speaking at the IKIRERE Physics Camp, 2026.</figcaption>
+          </figure>
+          <figure class="reveal">
+            <div><img src="assets/jeannette-speaking.jpg" width="994" height="398" loading="lazy" alt="Jeannette Mukangango in a blue blazer, speaking into a microphone at an event."></div>
+            <figcaption>Speaking at a science and policy event.</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
   </main>
 
+  <section class="band" aria-label="Cloud systems over south-east Africa">
+    <div class="band-img band-cyclone" data-parallax="0.12" aria-hidden="true"></div>
+    <div class="band-inner reveal">
+      <p class="band-line">Evidence for a <em>resilient</em> Africa</p>
+      <p class="credit">Cloud systems over south-east Africa, seen by the Suomi NPP satellite. Image: NASA</p>
+    </div>
+  </section>
+
+  <main class="main-3">
+    <section class="block" id="skills" aria-labelledby="skills-h">
+      <div class="intro reveal">
+        <p class="kicker">Skills</p>
+        <h2 id="skills-h">Tools and <em>training</em></h2>
+      </div>
+      <div class="skills">
+        <dl class="facts reveal">
+          <div><dt>Programming</dt><dd>Python (pandas, NumPy, scikit-learn, Matplotlib, TensorFlow/Keras), R, Stata, SPSS, EUROMOD, Power BI, LaTeX</dd></div>
+          <div><dt>Methods</dt><dd>Statistical modelling, machine learning, forecasting, microsimulation, Monte Carlo simulation, difference-in-differences, systematic review and evidence synthesis</dd></div>
+          <div><dt>Languages</dt><dd>Kinyarwanda (native), English (fluent), French (basic)</dd></div>
+        </dl>
+        <div class="reveal">
+          <h3 class="minor">Selected training</h3>
+          <ul class="compact">
+            <li>AIMS RIC Doctoral Training School on Foundational Methods in Data Science, 2026</li>
+            <li>App Development with Swift, Apple Authorised Training, 2025</li>
+            <li>Climate Finance and Innovative Business Models Program, African Group of Negotiators Experts Support (AGNES), 2025</li>
+            <li>Modern Statistics and Machine Learning for Global Health, Imperial College London and AIMS RIC, 2024</li>
+            <li>Certificate in Business Management, ESMT Berlin with AIMS, 2021</li>
+            <li>Biodiversity Informatics, Biodiversity Summer School, AIMS Next Einstein Initiative and IDRC, 2021</li>
+            <li>Leadership and Communication, NISR and UK Office for National Statistics, 2019</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
   <footer class="contact" id="contact">
-    <div class="contact-inner">
+    <div class="contact-inner reveal">
       <div>
-        <h2>Let's talk</h2>
-        <p>I welcome conversations about research collaboration in climate finance, climate data and machine learning. My full CV is available on request.</p>
+        <p class="contact-script">Let's talk</p>
+        <p class="contact-lead">I welcome conversations about research collaboration in climate finance, climate data and machine learning. My full CV is available on request.</p>
         <ul class="links">
           <li><a href="mailto:jmukangango@aimsric.org">jmukangango@aimsric.org</a></li>
           <li><a href="https://www.linkedin.com/in/jeannette-mukangango-3515991b9">LinkedIn</a></li>
           <li><a href="https://github.com/jeannette182">GitHub</a></li>
         </ul>
-        <p class="fine">Kigali, Rwanda &middot; &copy; 2026 Jeannette Mukangango</p>
       </div>
-      <img class="contact-photo" src="assets/jeannette-portrait-contact.jpg" width="640" height="640" loading="lazy"
-           alt="Jeannette Mukangango smiling, in an olive jacket, against a dark background.">
+      <img class="contact-photo" src="assets/contact-portrait.webp" width="640" height="640" loading="lazy"
+           alt="Jeannette Mukangango smiling, in glasses and a black dress, against a light wall.">
     </div>
+    <p class="fine">Kigali, Rwanda. &copy; 2026 Jeannette Mukangango. Earth imagery courtesy of NASA, public domain.</p>
   </footer>
+
+  <button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="false">Pause motion</button>
+
+  <script src="main.js" defer></script>
 </body>
 </html>
